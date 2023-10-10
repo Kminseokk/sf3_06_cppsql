@@ -1,0 +1,4 @@
+﻿  client.cpp
+C:\Users\Lenovo\Desktop\github\sf3_06_cppsql\CPPSQL\CPPSQL\client.cpp(63,66): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Lenovo\Desktop\github\sf3_06_cppsql\CPPSQL\CPPSQL\client.cpp(75,45): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CPPSQL.vcxproj -> C:\Users\Lenovo\Desktop\github\sf3_06_cppsql\CPPSQL\x64\Debug\client.exe

@@ -17,6 +17,7 @@ int main()
     sql::Connection* con;
     sql::Statement* stmt;
     sql::PreparedStatement* pstmt;
+    sql::ResultSet* res; //결과값을 위해
 
     try {
         driver = sql::mysql::get_mysql_driver_instance();
@@ -59,6 +60,36 @@ int main()
     pstmt->setInt(2, 100);
     pstmt->execute();
     cout << "One row inserted." << endl;
+
+    cout << "\n";
+
+    // SQL 쿼리 실행
+    stmt = con->createStatement();
+    res = stmt->executeQuery("SELECT * FROM inventory"); // from 뒤에는 실제로 mysql 에서 사용하는 테이블의 이름을 써야한다.
+
+    // 결과 출력
+    while (res->next()) {
+        cout << "Column1: " << res->getString("name") << endl; // ("필드이름")을 써야함. 필드이름 원하는거!
+        cout << "Column2: " << res->getString("quantity") << endl; // ("필드이름")을 써야함. 필드이름 원하는거!
+    }
+
+    cout << "\n";
+    cout << "SQL 쿼리 실행 (특정 PK 값에 해당하는 행 선택) \n";
+    // SQL 쿼리 실행 (특정 PK 값에 해당하는 행 선택)
+
+    string pkValue = "2"; // 실제 PK 값으로 대체
+    //string query = "SELECT * FROM inventory WHERE id = '" + pkValue + "'";
+    // 테이블 이름, PK 열 이름
+
+    stmt = con->createStatement();
+    res = stmt->executeQuery("SELECT * FROM inventory WHERE id = '" + pkValue + "'");
+
+    // 결과 출력
+    while (res->next()) {
+        cout << "Column1: " << res->getString("name") << endl; // ("필드이름")을 써야함. 필드이름 원하는거!
+        cout << "Column2: " << res->getString("quantity") << endl; // ("필드이름")을 써야함. 필드이름 원하는거!
+    }
+
 
     // MySQL Connector/C++ 정리
     delete pstmt;
